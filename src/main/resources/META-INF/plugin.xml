@@ -1,15 +1,32 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.wl2027.arthasworkbench</id>
-    <name>arthas-workbench</name>
-    <vendor>wl2027</vendor>
+    <name>Arthas Workbench</name>
+    <vendor url="https://github.com/wl2027/arthas-workbench">wl2027</vendor>
 
     <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.java</depends>
 
     <resource-bundle>messages.MyBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.wl2027.arthasworkbench.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
-        <postStartupActivity implementation="com.github.wl2027.arthasworkbench.startup.MyProjectActivity" />
+        <notificationGroup id="Arthas Workbench" displayType="BALLOON" isLogByDefault="true"/>
+        <applicationConfigurable
+                id="com.github.wl2027.arthasworkbench.settings"
+                parentId="tools"
+                instance="com.alibaba.arthas.idea.workbench.settings.ArthasWorkbenchConfigurable"
+                displayName="Arthas Workbench"/>
+        <toolWindow factoryClass="com.alibaba.arthas.idea.workbench.ui.ArthasWorkbenchToolWindowFactory"
+                    id="Arthas Workbench"
+                    icon="/icons/toolwindows/toolWindowArthasWorkbench.svg"
+                    anchor="right"
+                    secondary="true"
+                    canCloseContents="false"/>
+        <toolWindow factoryClass="com.alibaba.arthas.idea.workbench.ui.ArthasSessionsToolWindowFactory"
+                    id="Arthas Sessions"
+                    icon="/icons/toolwindows/toolWindowArthasSessions.svg"
+                    anchor="bottom"
+                    secondary="false"
+                    canCloseContents="true"/>
     </extensions>
 </idea-plugin>

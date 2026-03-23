@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 查看排障文档
+    url: https://github.com/wl2027/arthas-workbench/blob/main/docs/TROUBLESHOOTING.md
+    about: 先查看常见问题与排查建议
+  - name: 查看开发说明
+    url: https://github.com/wl2027/arthas-workbench/blob/main/docs/DEVELOPMENT.md
+    about: 参与开发或本地调试前请先阅读

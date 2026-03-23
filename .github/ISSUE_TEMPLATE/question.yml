@@ -1,0 +1,23 @@
+name: 使用问题
+description: 询问安装、配置、Attach、Console、MCP 等使用问题
+title: "[Question] "
+labels:
+  - question
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: 你的问题
+      description: 直接描述你的疑问即可
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: 当前上下文
+      description: 提供 IDEA 版本、系统、Java 版本、AttachStrategy 或相关截图
+  - type: textarea
+    id: tried
+    attributes:
+      label: 已尝试的操作
+      description: 说明你已经试过哪些方法，能减少来回确认成本

@@ -1,0 +1,16 @@
+{
+  "icons": {
+    "expui": {
+      "toolwindows": {
+        "toolWindowArthasWorkbench.svg": "icons/toolwindows/toolWindowArthasWorkbench.svg",
+        "toolWindowArthasWorkbench_dark.svg": "icons/toolwindows/toolWindowArthasWorkbench_dark.svg",
+        "toolWindowArthasWorkbench@20x20.svg": "icons/toolwindows/toolWindowArthasWorkbench.svg",
+        "toolWindowArthasWorkbench@20x20_dark.svg": "icons/toolwindows/toolWindowArthasWorkbench_dark.svg",
+        "toolWindowArthasSessions.svg": "icons/toolwindows/toolWindowArthasSessions.svg",
+        "toolWindowArthasSessions_dark.svg": "icons/toolwindows/toolWindowArthasSessions_dark.svg",
+        "toolWindowArthasSessions@20x20.svg": "icons/toolwindows/toolWindowArthasSessions.svg",
+        "toolWindowArthasSessions@20x20_dark.svg": "icons/toolwindows/toolWindowArthasSessions_dark.svg"
+      }
+    }
+  }
+}

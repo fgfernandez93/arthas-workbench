@@ -1,0 +1,76 @@
+name: Bug 报告
+description: 反馈功能异常、Attach 失败、界面问题或行为回归
+title: "[Bug] "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢反馈问题。请尽量提供可复现信息，便于快速定位。
+  - type: input
+    id: summary
+    attributes:
+      label: 问题摘要
+      description: 用一句话说明问题现象
+      placeholder: 例如：Java 8 进程在 macOS 上使用 Arthas Boot attach 失败
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      description: 按顺序描述操作步骤
+      placeholder: |
+        1. 打开某个 Java 项目
+        2. 启动 demo 进程
+        3. 在 Arthas Workbench 中选择该进程并点击“开启 Attach”
+        4. 观察到错误
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 预期行为
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际行为
+    validations:
+      required: true
+  - type: input
+    id: idea_version
+    attributes:
+      label: IDEA 版本
+      placeholder: 例如 2025.1.4.1
+  - type: input
+    id: os
+    attributes:
+      label: 操作系统
+      placeholder: 例如 macOS 15.4.1
+  - type: input
+    id: target_java
+    attributes:
+      label: 目标 JVM 版本
+      placeholder: 例如 Corretto 1.8.0_472
+  - type: dropdown
+    id: attach_strategy
+    attributes:
+      label: AttachStrategy
+      options:
+        - Arthas Boot
+        - jattach
+        - 未确认
+  - type: textarea
+    id: logs
+    attributes:
+      label: 相关日志
+      description: 请贴 `Arthas Sessions` 中的 Log，必要时可脱敏
+      render: text
+  - type: textarea
+    id: extra
+    attributes:
+      label: 补充信息
+      description: 其他上下文、截图、猜测或对比结果
