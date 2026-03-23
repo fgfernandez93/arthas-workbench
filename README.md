@@ -10,8 +10,11 @@
 
 <div align="center">
 
+
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/com.github.wl2027.arthasworkbench.svg)](https://plugins.jetbrains.com/plugin/30843-arthas-workbench)
+![Downloads](https://img.shields.io/github/release/wl2027/arthas-workbench.svg)
+
 ![License](https://img.shields.io/badge/license-Apache%202.0-1677ff)
-![Status](https://img.shields.io/badge/status-alpha-f59e0b)
 ![IDEA](https://img.shields.io/badge/IDEA-2025.1%2B-0a7cff)
 ![JDK](https://img.shields.io/badge/JDK-21-1f883d)
 ![Language](https://img.shields.io/badge/language-Java-f57c00)
