@@ -410,7 +410,7 @@ public class ArthasMcpGatewayServiceTest {
      */
     private static ArthasMcpGatewayService.GatewaySessionTarget target(String projectName, ArthasSession session) {
         ArthasSessionService.SessionSnapshot snapshot = new ArthasSessionService.SessionSnapshot(
-                session.getId(), "PID " + session.getPid() + " #1", session, "", true, ArthasSessionViewType.CONSOLE);
+                session.getId(), "PID " + session.getPid() + " #1", session, "", true, ArthasSessionViewType.TERMINAL);
         return new ArthasMcpGatewayService.GatewaySessionTarget(projectName, snapshot);
     }
 

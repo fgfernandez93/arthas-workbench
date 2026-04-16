@@ -1,8 +1,8 @@
 package com.alibaba.arthas.idea.workbench.service;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
+import com.alibaba.arthas.idea.workbench.ArthasWorkbenchBundle;
 import com.alibaba.arthas.idea.workbench.model.PackageSourceSpec;
 import com.alibaba.arthas.idea.workbench.model.PackageSourceType;
 import java.nio.file.Files;
@@ -37,7 +37,9 @@ public class ArthasPackageServiceTest {
             packageService.resolve(
                     new PackageSourceSpec(PackageSourceType.LOCAL_PATH, temporaryFile.toString()), false);
         } catch (IllegalArgumentException exception) {
-            assertTrue(exception.getMessage().contains("目录"));
+            assertEquals(
+                    ArthasWorkbenchBundle.message("service.package.validation.local_dir_required", temporaryFile),
+                    exception.getMessage());
             return;
         } finally {
             Files.deleteIfExists(temporaryFile);

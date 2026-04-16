@@ -33,7 +33,7 @@ public class ArthasWorkbenchSettingsPanelTest {
         state.mcpGatewayToken = "gateway-token";
         state.mcpPasswordMode = McpPasswordMode.FIXED.name();
         state.mcpPassword = "secret";
-        state.autoConnectConsole = true;
+        state.autoOpenTerminal = true;
         state.autoOpenWebUi = false;
 
         ArthasWorkbenchSettingsPanel panel = new ArthasWorkbenchSettingsPanel(null);
@@ -51,7 +51,7 @@ public class ArthasWorkbenchSettingsPanelTest {
         panel.setMcpGatewayToken("changed-gateway-token");
         panel.setMcpPasswordMode(McpPasswordMode.DISABLED);
         panel.setMcpPassword("changed");
-        panel.setAutoConnectConsole(false);
+        panel.setAutoOpenTerminal(false);
         panel.setAutoOpenWebUi(true);
 
         assertTrue(panel.isModified(state));
@@ -67,7 +67,7 @@ public class ArthasWorkbenchSettingsPanelTest {
         assertEquals("changed-gateway-token", updated.mcpGatewayToken);
         assertEquals(McpPasswordMode.DISABLED.name(), updated.mcpPasswordMode);
         assertEquals("changed", updated.mcpPassword);
-        assertFalse(updated.autoConnectConsole);
+        assertFalse(updated.autoOpenTerminal);
         assertTrue(updated.autoOpenWebUi);
     }
 

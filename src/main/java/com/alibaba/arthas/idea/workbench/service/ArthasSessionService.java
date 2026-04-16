@@ -88,16 +88,16 @@ public final class ArthasSessionService {
         return candidate == null ? null : snapshotOf(candidate);
     }
 
-    public synchronized void markConsoleOpen(String sessionId, boolean open) {
-        openSessionWindow(sessionId, open ? ArthasSessionViewType.CONSOLE : null);
+    public synchronized void markTerminalOpen(String sessionId, boolean open) {
+        openSessionWindow(sessionId, open ? ArthasSessionViewType.TERMINAL : null);
     }
 
     public synchronized void markLogsOpen(String sessionId, boolean open) {
         openSessionWindow(sessionId, open ? ArthasSessionViewType.LOG : null);
     }
 
-    public synchronized void openConsoleAndLogs(String sessionId) {
-        openSessionWindow(sessionId, ArthasSessionViewType.CONSOLE);
+    public synchronized void openTerminalAndLogs(String sessionId) {
+        openSessionWindow(sessionId, ArthasSessionViewType.TERMINAL);
     }
 
     public synchronized void openSessionWindow(String sessionId, ArthasSessionViewType viewType) {
@@ -278,8 +278,8 @@ public final class ArthasSessionService {
             return selectedViewType;
         }
 
-        public boolean isConsoleOpen() {
-            return sessionWindowOpen && selectedViewType == ArthasSessionViewType.CONSOLE;
+        public boolean isTerminalOpen() {
+            return sessionWindowOpen && selectedViewType == ArthasSessionViewType.TERMINAL;
         }
 
         public boolean isLogsOpen() {

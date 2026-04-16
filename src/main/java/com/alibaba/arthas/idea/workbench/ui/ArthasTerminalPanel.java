@@ -22,10 +22,10 @@ import java.util.Objects;
 import javax.swing.JPanel;
 
 /**
- * 真正承载 Arthas Console 的终端面板。
+ * 真正承载 Arthas Terminal 的终端面板。
  * 终端组件只在会话运行中才创建，其余状态显示说明文本。
  */
-public final class ArthasConsolePanel extends JPanel implements Disposable {
+public final class ArthasTerminalPanel extends JPanel implements Disposable {
 
     private static final String STATUS_CARD = "status";
     private static final String TERMINAL_CARD = "terminal";
@@ -41,12 +41,12 @@ public final class ArthasConsolePanel extends JPanel implements Disposable {
     private int connectionToken;
     private boolean disposed;
 
-    public ArthasConsolePanel(Project project) {
+    public ArthasTerminalPanel(Project project) {
         super(new BorderLayout());
         contentPanel.add(new JBScrollPane(statusArea), STATUS_CARD);
         contentPanel.add(terminalHostPanel, TERMINAL_CARD);
         add(contentPanel, BorderLayout.CENTER);
-        showWaiting(message("console.status.not_running"));
+        showWaiting(message("terminal.status.not_running"));
     }
 
     /**
@@ -62,11 +62,11 @@ public final class ArthasConsolePanel extends JPanel implements Disposable {
             return;
         }
         if (session.getStatus() == SessionStatus.FAILED) {
-            showWaiting(message("console.status.failed"));
+            showWaiting(message("terminal.status.failed"));
         } else if (session.getStatus() == SessionStatus.STOPPED) {
-            showWaiting(message("console.status.stopped"));
+            showWaiting(message("terminal.status.stopped"));
         } else {
-            showWaiting(message("console.status.attaching"));
+            showWaiting(message("terminal.status.attaching"));
         }
     }
 
@@ -94,7 +94,7 @@ public final class ArthasConsolePanel extends JPanel implements Disposable {
     private void connect(ArthasSession targetSession) {
         int token = ++connectionToken;
         closeTerminal();
-        statusArea.setText(message("console.status.connecting", String.valueOf(targetSession.getTelnetPort())));
+        statusArea.setText(message("terminal.status.connecting", String.valueOf(targetSession.getTelnetPort())));
         statusArea.setCaretPosition(0);
         cardLayout.show(contentPanel, STATUS_CARD);
 
@@ -109,7 +109,7 @@ public final class ArthasConsolePanel extends JPanel implements Disposable {
                     if (!isCurrentConnectRequest(token, targetSession)) {
                         return;
                     }
-                    showWaiting(message("console.status.connect_failed", exception.getMessage()));
+                    showWaiting(message("terminal.status.connect_failed", exception.getMessage()));
                 });
                 return;
             }
@@ -127,7 +127,7 @@ public final class ArthasConsolePanel extends JPanel implements Disposable {
     private void installTerminal(ArthasTelnetTtyConnector connector) {
         closeTerminal();
         ttyConnector = connector;
-        terminalWidget = new JediTermWidget(160, 40, new ConsoleSettingsProvider());
+        terminalWidget = new JediTermWidget(160, 40, new TerminalSettingsProvider());
         terminalWidget.setTtyConnector(connector);
         terminalHostPanel.removeAll();
         terminalHostPanel.add(terminalWidget, BorderLayout.CENTER);
@@ -138,7 +138,7 @@ public final class ArthasConsolePanel extends JPanel implements Disposable {
             terminalWidget.start();
             terminalWidget.requestFocusInWindow();
         } catch (RuntimeException exception) {
-            showWaiting(message("console.status.init_failed", exception.getMessage()));
+            showWaiting(message("terminal.status.init_failed", exception.getMessage()));
         }
     }
 
@@ -187,16 +187,16 @@ public final class ArthasConsolePanel extends JPanel implements Disposable {
     /**
      * 终端颜色和字体统一跟随 IDEA。
      */
-    private final class ConsoleSettingsProvider extends JBTerminalSystemSettingsProviderBase {
+    private final class TerminalSettingsProvider extends JBTerminalSystemSettingsProviderBase {
 
         @Override
         public TerminalColor getDefaultForeground() {
-            return toTerminalColor(ArthasSessionUiSettings.resolveConsoleForeground());
+            return toTerminalColor(ArthasSessionUiSettings.resolveTerminalForeground());
         }
 
         @Override
         public TerminalColor getDefaultBackground() {
-            return toTerminalColor(ArthasSessionUiSettings.resolveConsoleBackground());
+            return toTerminalColor(ArthasSessionUiSettings.resolveTerminalBackground());
         }
 
         @Override

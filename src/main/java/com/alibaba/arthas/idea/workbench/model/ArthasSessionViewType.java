@@ -6,7 +6,7 @@ import com.alibaba.arthas.idea.workbench.ArthasWorkbenchBundle;
  * 会话页签内部可切换的视图类型。
  */
 public enum ArthasSessionViewType {
-    CONSOLE("enum.session.view.console"),
+    TERMINAL("enum.session.view.terminal"),
     LOG("enum.session.view.log");
 
     private final String displayNameKey;

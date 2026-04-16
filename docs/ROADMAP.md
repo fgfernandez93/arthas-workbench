@@ -5,11 +5,11 @@
 - Settings 页面与运行期 UI 解耦
 - Workbench 负责进程发现、Attach 和统一操作
 - Sessions Tool Window 负责多会话 tab 管理
-- Console / Log 合并到同一会话页签内部切换
+- Terminal / Log 合并到同一会话页签内部切换
 - `PackageSource` 统一抽象 5 种 Arthas 包来源
 - `AttachStrategy` 当前默认收敛到 `Arthas Boot`
 - MCP Gateway 聚合多个会话并提供稳定入口
-- Console 已切换为真实终端交互，而不是只读文本输出
+- Terminal 已切换为真实终端交互，而不是只读文本输出
 - Web UI 已从插件内嵌改为默认浏览器打开
 - Gateway 认证模式、Agent MCP 密码和自动打开行为已支持配置化
 

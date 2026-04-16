@@ -7,7 +7,7 @@ Arthas Workbench 当前聚焦本地开发场景，核心目标有 5 个：
 1. 在 IDEA 内快速发现并选择目标 Java 进程。
 2. 把 Arthas 包来源统一抽象，避免用户手工管理多种 Zip / Jar 来源。
 3. 把 Attach 动作统一收敛到稳定的 `arthas-boot` 工作流。
-4. 把 Console、Log、Web UI、MCP 的入口统一收敛到清晰的 IDE 工作流中。
+4. 把 Terminal、Log、Web UI、MCP 的入口统一收敛到清晰的 IDE 工作流中。
 5. 让 MCP 能力以稳定 Gateway 的形式暴露给 AI / IDE 内部助手使用。
 
 ## 当前 UI 分层
@@ -46,7 +46,7 @@ Sessions Tool Window 负责一个 agent 一个 tab 的会话管理。
 职责：
 
 - 每个会话一个 tab
-- tab 内切换 `Console / Log`
+- tab 内切换 `Terminal / Log`
 - 运行中禁止手动关闭 tab
 - 停止或失败后允许点击 `x` 关闭
 - 会话恢复后可以重新打开
@@ -122,7 +122,7 @@ Sessions Tool Window 负责一个 agent 一个 tab 的会话管理。
 Settings 中当前拆成两套独立配置：
 
 - `Agent MCP 密码`
-  只用于访问 agent 侧 MCP；IDEA 内 Console / Telnet 和浏览器打开的 Web UI 不依赖这里的密码
+  只用于访问 agent 侧 MCP；IDEA 内 Terminal / Telnet 和浏览器打开的 Web UI 不依赖这里的密码
 - `MCP Gateway 认证`
   只作用于插件内置 Gateway 的固定 `/gateway/mcp` 入口，不影响 Agent MCP 密码
 
@@ -150,7 +150,7 @@ Settings 中当前拆成两套独立配置：
 - 注册或更新会话
 - 累积日志
 - 跟踪会话窗口是否打开
-- 记录当前 tab 选择的是 `Console` 还是 `Log`
+- 记录当前 tab 选择的是 `Terminal` 还是 `Log`
 - 根据 PID 查找最新会话
 - 在进程结束时自动标记为 `STOPPED`
 
@@ -187,25 +187,25 @@ Settings 中当前拆成两套独立配置：
 
 Gateway 认证模式和 Token 在 Settings 中持久化保存。
 
-## 当前 Console 架构
+## 当前 Terminal 架构
 
-Console 使用终端链路：
+Terminal 使用终端链路：
 
-- `ArthasConsolePanel`
+- `ArthasTerminalPanel`
 - `ArthasTelnetTtyConnector`
 - `JediTermWidget`
 
 工作方式：
 
 1. attach 成功后，取会话的 Telnet 端口。
-2. 通过 Telnet 连接到 Arthas Console。
+2. 通过 Telnet 连接到 Arthas Terminal。
 3. 把读写流交给 JediTerm。
 4. 在 IDEA 内获得接近原生终端的交互体验。
 
 这意味着：
 
 - 可以直接输入 Arthas 命令
-- 命令补全依赖 Arthas Console 原生能力
+- 命令补全依赖 Arthas Terminal 原生能力
 - 会话切换时需要主动关闭旧连接，避免悬挂
 
 ## 当前流程图
@@ -221,7 +221,7 @@ flowchart TD
     D --> G["ArthasSession"]
     G --> H["ArthasSessionService"]
     H --> I["Arthas Sessions Tool Window"]
-    I --> J["Console"]
+    I --> J["Terminal"]
     I --> K["Log"]
     B --> L["ArthasMcpGatewayService"]
     L --> H
@@ -235,7 +235,7 @@ flowchart TD
 4. `AttachStrategy` 执行 attach。
 5. 成功后注册 `ArthasSession` 并进入 `RUNNING`。
 6. Sessions Tool Window 自动创建对应 tab。
-7. 用户在 tab 内切换 `Console / Log`。
+7. 用户在 tab 内切换 `Terminal / Log`。
 8. 进程退出或主动 `关闭 Arthas` 后，会话进入 `STOPPED`。
 9. 停止后的 tab 允许手动关闭。
 

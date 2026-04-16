@@ -81,7 +81,7 @@ public final class ArthasWorkbenchSettingsPanel {
     private final JButton generateMcpGatewayTokenButton = new JButton(message("settings.action.generate.token"));
     private final JButton copyMcpConfigButton = new JButton(message("settings.action.copy.mcp"));
 
-    private final JBCheckBox autoConnectConsoleCheckBox = new JBCheckBox(message("settings.auto.open.session"));
+    private final JBCheckBox autoOpenTerminalCheckBox = new JBCheckBox(message("settings.auto.open.terminal"));
     private final JBCheckBox autoOpenWebUiCheckBox = new JBCheckBox(message("settings.auto.open.web_ui"));
     private final JBTextArea settingsNoteArea = createNoteArea(message("settings.note"));
     private PackageSourceType lastSourceType = PackageSourceType.OFFICIAL_LATEST;
@@ -124,7 +124,7 @@ public final class ArthasWorkbenchSettingsPanel {
         mcpGatewayTokenField.setText(state.mcpGatewayToken);
         mcpPasswordModeCombo.setSelectedItem(mcpPasswordMode);
         mcpPasswordField.setText(state.mcpPassword);
-        autoConnectConsoleCheckBox.setSelected(state.autoConnectConsole);
+        autoOpenTerminalCheckBox.setSelected(state.autoOpenTerminal);
         autoOpenWebUiCheckBox.setSelected(state.autoOpenWebUi);
 
         portAllocationHintLabel.setText(portAllocationMode.getHint());
@@ -150,7 +150,7 @@ public final class ArthasWorkbenchSettingsPanel {
         state.mcpGatewayToken = resolveGatewayTokenForSaving();
         state.mcpPasswordMode = currentMcpPasswordMode().name();
         state.mcpPassword = new String(mcpPasswordField.getPassword());
-        state.autoConnectConsole = autoConnectConsoleCheckBox.isSelected();
+        state.autoOpenTerminal = autoOpenTerminalCheckBox.isSelected();
         state.autoOpenWebUi = autoOpenWebUiCheckBox.isSelected();
         return state;
     }
@@ -176,7 +176,7 @@ public final class ArthasWorkbenchSettingsPanel {
                         McpPasswordMode.fromValue(state.mcpPasswordMode, state.mcpPassword)
                                 .name())
                 || !Objects.equals(current.mcpPassword, state.mcpPassword)
-                || current.autoConnectConsole != state.autoConnectConsole
+                || current.autoOpenTerminal != state.autoOpenTerminal
                 || current.autoOpenWebUi != state.autoOpenWebUi;
     }
 
@@ -221,8 +221,8 @@ public final class ArthasWorkbenchSettingsPanel {
         mcpPasswordField.setText(value);
     }
 
-    void setAutoConnectConsole(boolean value) {
-        autoConnectConsoleCheckBox.setSelected(value);
+    void setAutoOpenTerminal(boolean value) {
+        autoOpenTerminalCheckBox.setSelected(value);
     }
 
     void setAutoOpenWebUi(boolean value) {
@@ -332,7 +332,7 @@ public final class ArthasWorkbenchSettingsPanel {
     private JPanel createBehaviorSection() {
         JPanel panel = createSectionPanel("settings.section.behavior");
         GridBagConstraints gc = sectionConstraints();
-        addRow(panel, gc, autoConnectConsoleCheckBox);
+        addRow(panel, gc, autoOpenTerminalCheckBox);
         addRow(panel, gc, autoOpenWebUiCheckBox);
         addRow(panel, gc, createNoteArea(message("settings.section.behavior.note")));
         return panel;

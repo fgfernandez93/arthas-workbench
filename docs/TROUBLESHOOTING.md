@@ -18,7 +18,7 @@
 - 如果仍失败，确认目标 JVM 的 `java.home`
 - 避免让 Attach Java 和目标 JVM 相差过大
 
-## 2. 已经 Attach 成功，但 Console 打不开
+## 2. 已经 Attach 成功，但 Terminal 打不开
 
 优先检查：
 
@@ -60,12 +60,12 @@
 
 ## 5. Arthas 密码到底作用在哪
 
-Settings 里的 `Agent MCP 密码` 不是 IDEA Console 的连接密码，而是 agent 侧 MCP 使用的密码。
+Settings 里的 `Agent MCP 密码` 不是 IDEA Terminal 的连接密码，而是 agent 侧 MCP 使用的密码。
 
 请按下面理解：
 
 - 插件会用它访问 agent 侧 MCP
-- 如果你关闭它，IDEA 内 Console / Telnet 仍可照常连接
+- 如果你关闭它，IDEA 内 Terminal / Telnet 仍可照常连接
 - 它和 `MCP Gateway` 的认证是两套独立配置，互不替代
 
 ## 6. 找不到目标 Java 进程
@@ -103,4 +103,4 @@ Settings 里的 `Agent MCP 密码` 不是 IDEA Console 的连接密码，而是 
 1. 右侧 `Arthas Workbench` 选中目标进程
 2. 查看底部状态栏是否显示已 Attach 或失败
 3. 如果失败，打开左下 `Arthas Sessions` 的对应会话 `Log`
-4. 如果成功但不能操作，再切到 `Console`
+4. 如果成功但不能操作，再切到 `Terminal`

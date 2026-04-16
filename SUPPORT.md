@@ -33,7 +33,7 @@
 
 - Attach 失败时，先看 `Arthas Sessions` 中该会话的 `Log`
 - 如果是 Java 8 目标进程，请重点确认 Attach 使用的 Java 和目标 JVM 是否兼容
-- 如果 Console 无法连接，请确认 Telnet 端口是否已被成功拉起
+- 如果 Terminal 无法连接，请确认 Telnet 端口是否已被成功拉起
 - 如果 MCP 不可用，请检查 Gateway 端口、Token 和对应会话状态
 
 如果问题和敏感信息相关，请在公开内容中先做脱敏处理。

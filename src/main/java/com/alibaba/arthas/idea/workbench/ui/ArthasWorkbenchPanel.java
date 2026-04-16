@@ -592,7 +592,7 @@ public final class ArthasWorkbenchPanel extends JPanel implements Disposable {
 
     /**
      * 构造临时会话并启动后台 Attach。
-     * Attach 过程中先打开 Log 视图，成功后自动切换到 Console 视图。
+     * Attach 过程中先打开 Log 视图，成功后自动切换到 Terminal 视图。
      */
     private void attachProcess(JvmProcessInfo process, boolean forcePackageUpdate) {
         ArthasWorkbenchSettingsService.SettingsState state = settings.getState();
@@ -646,10 +646,10 @@ public final class ArthasWorkbenchPanel extends JPanel implements Disposable {
                                 forcePackageUpdate),
                         line -> sessionService.appendLog(sessionId, line));
                 sessionService.addOrUpdateSession(session);
-                sessionService.openSessionWindow(sessionId, ArthasSessionViewType.CONSOLE);
+                sessionService.openSessionWindow(sessionId, ArthasSessionViewType.TERMINAL);
                 runOnEdt(() -> {
                     UiToolkit.notifyInfo(project, message("workbench.notify.attach_success", session.getPid()));
-                    if (state.autoConnectConsole) {
+                    if (state.autoOpenTerminal) {
                         activateToolWindow(SESSIONS_TOOL_WINDOW_ID);
                     }
                     if (state.autoOpenWebUi) {
@@ -670,7 +670,7 @@ public final class ArthasWorkbenchPanel extends JPanel implements Disposable {
 
     /**
      * 打开当前选中进程对应的会话窗口。
-     * 运行中的会话默认进入 Console，其他状态维持上次选中的视图。
+     * 运行中的会话默认进入 Terminal，其他状态维持上次选中的视图。
      */
     private void openSelectedSession() {
         ArthasSessionService.SessionSnapshot snapshot = selectedSessionSnapshot();
@@ -679,7 +679,7 @@ public final class ArthasWorkbenchPanel extends JPanel implements Disposable {
             return;
         }
         ArthasSessionViewType preferredView = snapshot.getSession().getStatus() == SessionStatus.RUNNING
-                ? ArthasSessionViewType.CONSOLE
+                ? ArthasSessionViewType.TERMINAL
                 : snapshot.getSelectedViewType();
         sessionService.openSessionWindow(snapshot.getId(), preferredView);
         activateToolWindow(SESSIONS_TOOL_WINDOW_ID);

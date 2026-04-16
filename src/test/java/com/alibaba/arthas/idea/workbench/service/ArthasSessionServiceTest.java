@@ -27,21 +27,21 @@ public class ArthasSessionServiceTest {
 
         ArthasSessionService.SessionSnapshot firstSnapshot = service.findSnapshot("session-1");
         assertNotNull(firstSnapshot);
-        assertFalse(firstSnapshot.isConsoleOpen());
+        assertFalse(firstSnapshot.isTerminalOpen());
         assertTrue(firstSnapshot.isLogsOpen());
         assertTrue(firstSnapshot.isSessionWindowOpen());
         assertEquals(ArthasSessionViewType.LOG, firstSnapshot.getSelectedViewType());
 
         service.addOrUpdateSession(session("session-2", 1001L, SessionStatus.RUNNING));
-        service.openConsoleAndLogs("session-2");
+        service.openTerminalAndLogs("session-2");
 
         ArthasSessionService.SessionSnapshot latest = service.findLatestByPid(1001L);
         assertNotNull(latest);
         assertEquals("session-2", latest.getId());
-        assertTrue(latest.isConsoleOpen());
+        assertTrue(latest.isTerminalOpen());
         assertFalse(latest.isLogsOpen());
         assertTrue(latest.isSessionWindowOpen());
-        assertEquals(ArthasSessionViewType.CONSOLE, latest.getSelectedViewType());
+        assertEquals(ArthasSessionViewType.TERMINAL, latest.getSelectedViewType());
         assertEquals(SessionStatus.RUNNING, latest.getSession().getStatus());
     }
 

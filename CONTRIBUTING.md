@@ -43,7 +43,7 @@ cd idea-plugin/arthas-workbench
 - 运行 `./gradlew test`
 - 如涉及插件行为、资源或元数据变更，运行 `./gradlew buildPlugin -x buildSearchableOptions -x jarSearchableOptions`
 - 更新 README、CHANGELOG 或相关文档
-- 如涉及 Attach、MCP、端口或 Console 行为，补充相应测试或排障说明
+- 如涉及 Attach、MCP、端口或 Terminal 行为，补充相应测试或排障说明
 
 ## PR 建议
 

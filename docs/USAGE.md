@@ -6,7 +6,7 @@ Arthas Workbench 面向本地开发与调试场景，适合下面几类使用方
 
 - 在 IDEA 内直接发现并 Attach 当前 Run/Debug 的 Java 进程
 - Attach 非 IDEA 启动的本地 JVM
-- 在 IDE 内维护多个 Arthas 会话的 Console / Log
+- 在 IDE 内维护多个 Arthas 会话的 Terminal / Log
 - 用浏览器打开目标会话的 Arthas Web UI
 - 把多个会话统一暴露为一个稳定的 MCP Gateway
 
@@ -118,9 +118,9 @@ Attach 成功后：
 
 `Arthas Sessions` 位于左下方，用于统一管理多个会话。
 
-### Console
+### Terminal
 
-- 通过 `JediTerm + Telnet` 连接 Arthas Console
+- 通过 `JediTerm + Telnet` 连接 Arthas Terminal
 - 可以直接输入命令
 - 命令补全依赖 Arthas 原生命令补全
 
@@ -190,7 +190,7 @@ Attach 成功后：
 
 ## 常见问题
 
-### 为什么 Console / Web UI 不需要输入 `Agent MCP 密码`
+### 为什么 Terminal / Web UI 不需要输入 `Agent MCP 密码`
 
 因为当前密码主要用于 agent MCP，不是 arthas 的 auth 密码。
 

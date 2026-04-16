@@ -7,17 +7,17 @@ import java.awt.Color;
 import java.awt.Font;
 
 /**
- * 为 Console 与 Log 提供统一的 IDEA 跟随式外观配置。
+ * 为 Terminal 与 Log 提供统一的 IDEA 跟随式外观配置。
  */
 public final class ArthasSessionUiSettings {
 
     private ArthasSessionUiSettings() {}
 
-    public static Color resolveConsoleForeground() {
+    public static Color resolveTerminalForeground() {
         return ideaForeground();
     }
 
-    public static Color resolveConsoleBackground() {
+    public static Color resolveTerminalBackground() {
         return ideaBackground();
     }
 

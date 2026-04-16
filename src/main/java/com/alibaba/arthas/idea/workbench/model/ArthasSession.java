@@ -106,9 +106,9 @@ public final class ArthasSession {
     }
 
     /**
-     * 返回 Arthas 根控制台地址。
+     * 返回 Arthas 根访问地址。
      */
-    public String getWebConsoleUrl() {
+    public String getRootUrl() {
         return "http://127.0.0.1:" + httpPort + "/";
     }
 

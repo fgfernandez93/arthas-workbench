@@ -91,7 +91,7 @@ public final class ArthasWorkbenchSettingsService
         public String mcpGatewayToken = "";
         public String mcpPasswordMode = McpPasswordMode.RANDOM.name();
         public String mcpPassword = "";
-        public boolean autoConnectConsole = true;
+        public boolean autoOpenTerminal = true;
         public boolean autoOpenWebUi = true;
     }
 }
